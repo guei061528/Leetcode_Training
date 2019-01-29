@@ -10,8 +10,31 @@
 #
 # You may return the answer in any order.
 
-def findAndReplacePattern(words, pattern):
+# def findAndReplacePattern(words, pattern):
 
 
 
-words = ["abc", "deq", "mee", "aqq", "dkd", "ccc"], pattern = "abb"
+words = ["abc", "deq", "mee", "aqq", "dkd", "ccc"]
+pattern = "abb"
+pattern = list(pattern)
+res = []
+for word in words:
+    if len(set(word)) == len(set(pattern)):  # 排除一對多的情况
+
+        flag = True
+        mydict = {}
+
+        for a, b in zip(word, pattern):
+            if a not in mydict:
+                mydict[a] = b
+            else:
+                if mydict[a] != b:  # 排除多對一的情况
+                    flag = False
+                    break
+
+        if flag:
+            res.append(word)
+
+print(res)
+# 了解字典 dictionary 和 zip 用法
+# 用排除法的概念來實作
